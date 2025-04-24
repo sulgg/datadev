@@ -1,11 +1,9 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+// https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "datadev",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
+	// https://containers.dev/features.
 	"features": {
 		// https://rocker-project.org/
 		"ghcr.io/rocker-org/devcontainer-features/miniforge:2": {
@@ -14,27 +12,25 @@
 		}
 	},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh",
-				"files.exclude": { "**/.*": true },
 				"[python]": {
 					"editor.defaultFormatter": "ms-python.black-formatter"
-				}
+				},
+				// don't show dot files in the file explorer
+				"files.exclude": { "**/.*": true }
 			},
 			"extensions": [
 				"ms-python.python",
 				"ms-python.black-formatter",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"ms-toolsai.datawrangler"
 			]
 		}
-	}
+	},
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	// modify .zshrc to add more plugins and two lines prompt
+    "postCreateCommand": "sed -i 's/^plugins=(git)$/plugins=(git conda)/' ~/.zshrc && echo 'PROMPT=\"$PROMPT\\n\"' >> ~/.zshrc"
 }
