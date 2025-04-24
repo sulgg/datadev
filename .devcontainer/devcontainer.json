@@ -31,6 +31,10 @@
 		}
 	},
 
-	// modify .zshrc to add more plugins and two lines prompt
-    "postCreateCommand": "sed -i 's/^plugins=(git)$/plugins=(git conda)/' ~/.zshrc && echo 'PROMPT=\"$PROMPT\\n\"' >> ~/.zshrc"
+	// There is no way split postCreateCommand into multiple lines :(
+	// 1. substitute the default plugins in .zshrc to include others
+	// 2. add a new line to the prompt
+	// 3. create a src directory for the workspace
+	// 4. initialize conda for zsh
+    "postCreateCommand": "sed -i 's/^plugins=(git)$/plugins=(git conda)/' ~/.zshrc && echo 'PROMPT=\"$PROMPT\\n\"' >> ~/.zshrc && mkdir -p /workspaces/datadev/src && conda init zsh"
 }
