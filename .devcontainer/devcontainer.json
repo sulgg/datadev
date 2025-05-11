@@ -16,7 +16,7 @@
 		"vscode": {
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "zsh",
-				"python.defaultInterpreterPath": "/opt/conda/bin/python",
+				"python.languageServer": "Pylance",
 				"[python]": {
 					"editor.defaultFormatter": "ms-python.black-formatter"
 				},
